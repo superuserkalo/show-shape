@@ -1,5 +1,6 @@
 import json
 import re
+import struct
 import unittest
 from pathlib import Path
 
@@ -41,8 +42,22 @@ class ShowShapeTests(unittest.TestCase):
             self.assertTrue(reference.startswith(f"# {view.capitalize()}\n"))
             self.assertIn("```text", reference)
         readme = (ROOT / "README.md").read_text()
-        for link in re.findall(r"\]\((skills/[^)]+)\)", readme):
+        for link in re.findall(r"\]\((?!https?://)([^)]+)\)", readme):
             self.assertTrue((ROOT / link).is_file(), link)
+
+    def test_readme_screenshot(self):
+        readme = (ROOT / "README.md").read_text()
+        image = "assets/show-shape-in-action.png"
+        self.assertIn(f"]({image})", readme)
+        self.assertLess(readme.index(f"]({image})"), readme.index("## Install"))
+        data = (ROOT / image).read_bytes()
+        self.assertEqual(data[:8], b"\x89PNG\r\n\x1a\n")
+        self.assertEqual(data[12:16], b"IHDR")
+        width, height = struct.unpack(">II", data[16:24])
+        self.assertEqual((width, height), (2320, 1800))
+        transcript = (ROOT / "docs/example.md").read_text()
+        self.assertIn("### screen", transcript)
+        self.assertIn("### states", transcript)
 
 
 if __name__ == "__main__":

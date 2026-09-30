@@ -10,6 +10,13 @@ for every request.
 It visualizes the design on the table. It does **not** plan the feature, choose
 an architecture, or implement it.
 
+## In action
+
+![show-shape in action: a task-board screen diagram and its empty, loading, and ready states](assets/show-shape-in-action.png)
+
+Actual Claude Code output from a `show-shape` run, rendered for this preview.
+[Read the prompt and response as text.](docs/example.md)
+
 ## Install
 
 With the [Skills CLI](https://github.com/vercel-labs/skills):
