@@ -1,0 +1,8 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "show-shape",
+  "version": "0.1.0",
+  "description": "Draw focused text diagrams of a design, architecture, or feature already under discussion.",
+  "repository": "https://github.com/superuserkalo/show-shape",
+  "keywords": ["agent-skills", "architecture", "diagrams", "design"]
+}
