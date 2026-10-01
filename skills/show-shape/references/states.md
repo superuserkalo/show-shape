@@ -9,4 +9,4 @@ Side-by-side boxes of one surface, one per state that looks different. Same oute
 └───────────────┘  └───────────────┘  └───────────────┘
 ```
 
-Only states that look different get a box. Identical-looking states merge into one.
+Only states that look different get a box. Identical-looking states merge into one. Stack the same-width frames if they would exceed the column budget.

@@ -3,37 +3,23 @@
 Box-drawing flowchart: data in, who owns each piece, the gates that turn a path on or off.
 
 ```text
-                      ┌──────────────┐                           ┌─────────────────────┐
-                      │ Ctrl-V paste │                           │ /settings Interface │
-                      └───────┬──────┘                           └──────────┬──────────┘
-                              │                                ┌────────────┴────────────┐
-                              ▼                                ▼                         ▼
-                ┌──────────────────────────┐      ┌────────────────────────┐   ┌───────────────────┐
-                │ Composer chip [Image #N] │      │ Composer image preview │   │ Transcript images │
-                │  bytes stay Client-side  │      └────────────┬───────────┘   └─────────┬─────────┘
-                └─────────────┬────────────┘                   │                         │
-                              ├────────────────────────────────┘                         │
-                              ▼                                                          │
-                         ┌────────┐                                        ╭─────────────┴────────────╮
-                         │ Submit │                                        │ caret on / after chip    │
-                         └────┬───┘                                        │ and Composer preview on? │
-                              │                                            ╰─────────────┬────────────╯
-              ┌───────────────┴────────────────┐                              ┌──────────┴───────────┐
-              ▼                                ▼                              ▼yes                   ▼no
-┌──────────────────────────┐       ┌───────────────────────┐      ┌───────────────────────┐   ┌────────────┐
-│ Kernel / session / model │       │ Fullscreen user block │      │ Live overlay dim +    │   │ No overlay │
-│ unchanged: [Image N] +   │       │ text kept for copy    │      │ rounded frame + title │   └────────────┘
-│ PNG bytes                │       └───────────┬───────────┘      └───────────┬───────────┘
-└──────────────────────────┘                   │                              │
-                                               ▼                              ▼
-                                 ╭──────────────────────────╮   ╭──────────────────────────╮
-                                 │ Transcript images on and │   │ Kitty on Kitty / Ghostty │
-                                 │ fullscreen?              │   │ / WezTerm?               │
-                                 ╰─────────────┬────────────╯   ╰─────────────┬────────────╯
-                    ┌──────────────────────────┼──────────────────────┐       ├──────────────┐
-                    ▼yes + Kitty               ▼yes, no Kitty         ▼off    ▼yes           ▼no
-      ┌──────────────────────────┐    ┌───────────────┐  ┌──────────────────┐ ┌──────────────┐ ┌───────────────────┐
-      │ Reserved rows + Kitty    │    │ Text fallback │  │ [Image #N] text  │ │ Post-flush   │ │ Metadata box only │
-      │ place Pi Image component │    └───────────────┘  │ only             │ │ pixel place  │ └───────────────────┘
-      └──────────────────────────┘                       └──────────────────┘ └──────────────┘
+┌─ Client ───────────────────────────────────────┐
+│ selected file + metadata                       │
+│ owns temporary selection, not stored bytes     │
+└───────────────────────┬────────────────────────┘
+                        ▼
+╭─ Upload API gate ──────────────────────────────╮
+│ owns validation + authorization                │
+│ File allowed and actor authorized?             │
+╰───────────────────────┬────────────────────────╯
+                        │
+          ┌─────────────┴─────────────┐
+          │ yes                       │ no
+          ▼                           ▼
+┌─ Storage ──────────────┐  ┌─ Rejected ─────────────┐
+│ bytes + receipt        │  │ no stored bytes        │
+│ API owns access policy │  │ Client shows error     │
+└────────────────────────┘  └────────────────────────┘
 ```
+
+Put the owner and retained data inside each box. Label every gate exit. Keep branch stems on fixed columns and join them with junction glyphs. Split independent paths into separate fenced diagrams rather than squeezing a wide graph into the terminal.

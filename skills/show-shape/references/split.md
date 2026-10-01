@@ -8,21 +8,21 @@ A box-drawing table for the remaining axis. One table.
 - One constraint line under the table when something sits outside the comparison.
 
 ```text
-┌───────────────────────────────┬──────────────────────────────┬─────────────────────────────┐
-│ Axis                          │ CodeMode                     │ RLM + Python REPL           │
-├───────────────────────────────┼──────────────────────────────┼─────────────────────────────┤
-│ Job - what the loop is for    │ compose host tools           │ keep data out of the prompt │
-├───────────────────────────────┼──────────────────────────────┼─────────────────────────────┤
-│ Heap - where values live      │ dies when execute returns    │ lives across turns          │
-├───────────────────────────────┼──────────────────────────────┼─────────────────────────────┤
-│ Runtime - who executes        │ allowlist JS walker          │ CPython kernel              │
-├───────────────────────────────┼──────────────────────────────┼─────────────────────────────┤
-│ Effects - what code may touch │ tools.* and search only      │ ambient unless wrapped      │
-├───────────────────────────────┼──────────────────────────────┼─────────────────────────────┤
-│ LLM from inside               │ no                           │ llm_query on heap slices    │
-├───────────────────────────────┼──────────────────────────────┼─────────────────────────────┤
-│ Resume - what survives        │ transcript + files           │ the process is the resume   │
-├───────────────────────────────┼──────────────────────────────┼─────────────────────────────┤
-│ Loop - who owns the turn      │ ReAct, execute is one Action │ REPL often is the loop      │
-└───────────────────────────────┴──────────────────────────────┴─────────────────────────────┘
+┌────────────────────────────┬─────────────────────────┬──────────────────────────┐
+│ Axis                       │ CodeMode                │ RLM + Python REPL        │
+├────────────────────────────┼─────────────────────────┼──────────────────────────┤
+│ Job - loop purpose         │ compose host tools      │ keep data out of prompt  │
+├────────────────────────────┼─────────────────────────┼──────────────────────────┤
+│ Heap - values live         │ ends with execute       │ lives across turns       │
+├────────────────────────────┼─────────────────────────┼──────────────────────────┤
+│ Runtime - executor         │ allowlist JS walker     │ CPython kernel           │
+├────────────────────────────┼─────────────────────────┼──────────────────────────┤
+│ Effects - code access      │ tools.* and search      │ ambient unless wrapped   │
+├────────────────────────────┼─────────────────────────┼──────────────────────────┤
+│ LLM from inside            │ no                      │ llm_query on heap slices │
+├────────────────────────────┼─────────────────────────┼──────────────────────────┤
+│ Resume - survives          │ transcript + files      │ process is the resume    │
+├────────────────────────────┼─────────────────────────┼──────────────────────────┤
+│ Loop - turn owner          │ ReAct, execute = Action │ REPL often is the loop   │
+└────────────────────────────┴─────────────────────────┴──────────────────────────┘
 ```

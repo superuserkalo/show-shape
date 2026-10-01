@@ -32,7 +32,7 @@ an architecture, or implement it.
 
    `~/.agents/skills` is an example shared skill root. Use your client's supported
    location if it differs, such as `~/.claude/skills` for Claude Code. Keep the
-   `references/` directory alongside `SKILL.md`.
+   `references/` and `scripts/` directories alongside `SKILL.md`.
 
 Or simply tell your agent to install the skill from
 [this GitHub repository](https://github.com/superuserkalo/show-shape).
@@ -55,10 +55,10 @@ it and returning a receipt, a flow view could look like:
 ### flow
 
 ```text
-┌─ browser ──────┐     ┌─ validator ────┐     ┌─ storage ──────┐
-│ selected file │────▶│ accepted file │────▶│ saved object   │
-│ + metadata    │     │ + metadata    │     │ + receipt      │
-└───────────────┘     └───────────────┘     └────────────────┘
+┌─ browser ─────┐     ┌─ validator ───┐     ┌─ storage ─────┐
+│ selected file ├────▶┤ accepted file ├────▶┤ saved object  │
+│ + metadata    │     │ + metadata    │     │ + receipt     │
+└───────────────┘     └───────────────┘     └───────────────┘
 ```
 
 ## Available views
@@ -82,3 +82,13 @@ it and returning a receipt, a flow view could look like:
 The response contains only the selected `### <view>` sections, most explanatory
 first, with at most one line of prose under each view. Reference examples are
 patterns, not assumptions about your project.
+
+Diagrams default to an 88-column budget, with padded borders and connected paths.
+When Python 3 is available, the agent can check its draft before replying:
+
+```sh
+python3 skills/show-shape/scripts/check_diagrams.py draft.md
+```
+
+The checker also accepts Markdown on stdin. It uses only the standard library
+and is optional. No diagram renderer is required.
