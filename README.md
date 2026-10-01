@@ -14,28 +14,28 @@ an architecture, or implement it.
 
 ![show-shape in action: a task-board screen diagram and its empty, loading, and ready states](assets/show-shape-in-action.png)
 
-Actual Claude Code output from a `show-shape` run, rendered for this preview.
-[Read the prompt and response as text.](docs/example.md)
-
 ## Install
 
-With the [Skills CLI](https://github.com/vercel-labs/skills):
+1. **With the [Skills CLI](https://github.com/vercel-labs/skills):**
 
-```sh
-npx skills add superuserkalo/show-shape --skill show-shape
-```
+   ```sh
+   npx skills add superuserkalo/show-shape --skill show-shape
+   ```
 
-Or copy the complete skill directory into your agent's skill root:
+2. **Copy the complete skill directory into your agent's skill root:**
 
-```sh
-git clone https://github.com/superuserkalo/show-shape.git
-mkdir -p ~/.agents/skills
-cp -R show-shape/skills/show-shape ~/.agents/skills/
-```
+   ```sh
+   git clone https://github.com/superuserkalo/show-shape.git
+   mkdir -p ~/.agents/skills
+   cp -R show-shape/skills/show-shape ~/.agents/skills/
+   ```
 
-`~/.agents/skills` is an example shared skill root. Use your client's supported
-location if it differs, such as `~/.claude/skills` for Claude Code. Keep the
-`references/` directory alongside `SKILL.md`.
+   `~/.agents/skills` is an example shared skill root. Use your client's supported
+   location if it differs, such as `~/.claude/skills` for Claude Code. Keep the
+   `references/` directory alongside `SKILL.md`.
+
+Or simply tell your agent to install the skill from
+[this GitHub repository](https://github.com/superuserkalo/show-shape).
 
 The repository also includes a root `plugin.json` for Agent Plugins-compatible
 clients. The skill itself needs no runtime dependencies or diagram renderer.
@@ -82,15 +82,3 @@ it and returning a receipt, a flow view could look like:
 The response contains only the selected `### <view>` sections, most explanatory
 first, with at most one line of prose under each view. Reference examples are
 patterns, not assumptions about your project.
-
-## Contents and verification
-
-This repository contains exactly one skill: [`show-shape`](skills/show-shape/SKILL.md),
-with its seven reference files. It was extracted from
-[`kstack`](https://github.com/superuserkalo/kstack) without changing the skill content.
-
-Run the package checks with Python 3:
-
-```sh
-python3 -m unittest discover -s tests -v
-```

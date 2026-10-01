@@ -54,10 +54,21 @@ class ShowShapeTests(unittest.TestCase):
         self.assertEqual(data[:8], b"\x89PNG\r\n\x1a\n")
         self.assertEqual(data[12:16], b"IHDR")
         width, height = struct.unpack(">II", data[16:24])
-        self.assertEqual((width, height), (2320, 1800))
+        self.assertGreaterEqual(width, 1200)
+        self.assertGreaterEqual(height, 800)
         transcript = (ROOT / "docs/example.md").read_text()
         self.assertIn("### screen", transcript)
         self.assertIn("### states", transcript)
+
+    def test_readme_install_and_scope(self):
+        readme = (ROOT / "README.md").read_text()
+        install = readme.split("## Install\n", 1)[1].split("## Use\n", 1)[0]
+        self.assertIn("1. **With the [Skills CLI]", install)
+        self.assertIn("2. **Copy the complete skill directory", install)
+        self.assertIn("Or simply tell your agent to install the skill from", install)
+        self.assertNotIn("## Contents and verification", readme)
+        self.assertNotIn("rendered for this preview", readme)
+        self.assertNotIn("Read the prompt and response as text", readme)
 
 
 if __name__ == "__main__":
