@@ -12,7 +12,7 @@ an architecture, or implement it.
 
 ## In action
 
-![show-shape rendered in Radian: a task-board screen diagram and its empty, loading, and ready states](assets/show-shape-in-action.png)
+![show-shape rendered in Radian: an invoice-approval console and ownership flow with approver gates, atomic audit/outbox writes, and retry-safe ERP export](assets/show-shape-in-action.png)
 
 ## Install
 

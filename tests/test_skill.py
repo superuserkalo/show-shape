@@ -59,7 +59,10 @@ class ShowShapeTests(unittest.TestCase):
         transcript = (ROOT / "docs/example.md").read_text()
         self.assertIn("rendered by Radian", transcript)
         self.assertIn("### screen", transcript)
-        self.assertIn("### states", transcript)
+        self.assertIn("### ownership", transcript)
+        self.assertIn("INV-1048", transcript)
+        self.assertIn("Postgres", transcript)
+        self.assertIn("retry-safe", transcript)
 
     def test_readme_install_and_scope(self):
         readme = (ROOT / "README.md").read_text()
