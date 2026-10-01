@@ -57,6 +57,7 @@ class ShowShapeTests(unittest.TestCase):
         self.assertGreaterEqual(width, 1200)
         self.assertGreaterEqual(height, 800)
         transcript = (ROOT / "docs/example.md").read_text()
+        self.assertIn("rendered by Radian", transcript)
         self.assertIn("### screen", transcript)
         self.assertIn("### states", transcript)
 

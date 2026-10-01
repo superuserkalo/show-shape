@@ -12,7 +12,7 @@ an architecture, or implement it.
 
 ## In action
 
-![show-shape in action: a task-board screen diagram and its empty, loading, and ready states](assets/show-shape-in-action.png)
+![show-shape rendered in Radian: a task-board screen diagram and its empty, loading, and ready states](assets/show-shape-in-action.png)
 
 ## Install
 

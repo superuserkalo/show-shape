@@ -1,35 +1,37 @@
 # Task-board example
 
-Actual output from a non-interactive Claude Code run using `show-shape`.
+Actual output from a `show-shape` run in Radian. The README screenshot shows this response rendered by Radian’s native terminal harness.
 
 ## Request
 
-Use show-shape to draw our agreed task board and its empty, loading, and ready states. The screen has a Workspaces sidebar, To do / In progress / Done columns, and a New task button. Cards show a title and assignee. Keep diagrams compact, use one card per column, keep box edges aligned, and do not truncate labels. Show this existing design, not a new one.
-
-The agent was instructed to read `skills/show-shape/SKILL.md` and its screen and states references, make no file edits, and return only the skill’s headed views.
+Use show-shape to draw our agreed task board: Workspaces sidebar, To do / In progress / Done columns, New task button, cards with title and assignee. Show screen and empty, loading, and ready states. Keep the diagrams compact and aligned. Do not redesign or edit files.
 
 ## Response
 
 ### screen
+
 ```text
-┌────────────────────────────────────────────────────────────────┐
-│ Task board                                        [ New task ] │
-│                                                                │
-│ ┌ Workspaces ┐ ┌ To do ──────┐ ┌ In progress ┐ ┌ Done ───────┐ │
-│ │ workspace  │ │ ┌─────────┐ │ │ ┌─────────┐ │ │ ┌─────────┐ │ │
-│ │            │ │ │title    │ │ │ │title    │ │ │ │title    │ │ │
-│ │            │ │ │assignee │ │ │ │assignee │ │ │ │assignee │ │ │
-│ │            │ │ └─────────┘ │ │ └─────────┘ │ │ └─────────┘ │ │
-│ └────────────┘ └─────────────┘ └─────────────┘ └─────────────┘ │
-└────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────┐
+│Workspaces    │Task board                                        [ New task ]│
+├──────────────┼──────────────────────────────────────────────────────────────┤
+│[Workspace]   │       To do        │    In progress     │        Done        │
+│              │ ┌────────────────┐ │ ┌────────────────┐ │ ┌────────────────┐ │
+│              │ │[Title]         │ │ │[Title]         │ │ │[Title]         │ │
+│              │ │Assignee: [Name]│ │ │Assignee: [Name]│ │ │Assignee: [Name]│ │
+│              │ └────────────────┘ │ └────────────────┘ │ └────────────────┘ │
+└──────────────┴────────────────────┴────────────────────┴────────────────────┘
 ```
-The sidebar, the three columns and the New task button stay in the same place in every state.
 
 ### states
+
+Board contents change. Workspaces, To do / In progress / Done columns, and New task remain visible.
+
 ```text
-┌─ empty ───────┐  ┌─ loading ─────┐  ┌─ ready ───────┐
-│3 empty columns│  │skeleton cards │  │title+assignee │
-│New task CTA   │  │per column     │  │cards/column   │
-└───────────────┘  └───────────────┘  └───────────────┘
+┌─ empty ─────────────────┐  ┌─ loading ───────────────┐  ┌─ ready ─────────────────┐
+│No cards in any column   │  │Loading cards…           │  │Cards in their columns   │
+│                         │  │                         │  │┌──────────────────┐     │
+│                         │  │                         │  ││ [Title]          │     │
+│                         │  │                         │  ││ Assignee: [Name] │     │
+│                         │  │                         │  │└──────────────────┘     │
+└─────────────────────────┘  └─────────────────────────┘  └─────────────────────────┘
 ```
-Only the inside of each column changes. The sidebar and the New task button stay the same.
